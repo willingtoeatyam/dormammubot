@@ -1,7 +1,16 @@
 const twit = require('twit');
-const T = new twit({
-    consumer_key: process.env.APPLICATION_CONSUMER_KEY_HERE,
-    consumer_secret: process.env.APPLICATION_CONSUMER_SECRET_HERE,
-    access_token: process.env.ACCESS_TOKEN_HERE,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET_HERE
-})
+const config = require('./config')
+
+const T = new twit(config)
+
+function tweet(text){
+    T.post('statuses/update', { status: text }, function(error, tweet, response) {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(tweet);
+        }
+    })
+}
+
+setInterval(function () {tweet(`Dormammu, I've come to bargain`); }, 7200000)

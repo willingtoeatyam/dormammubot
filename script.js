@@ -1,16 +1,26 @@
 const twit = require('twit');
+const ordinal = require('number-to-words');
 const config = require('./config')
 
 const T = new twit(config)
+let n = 1;
+tweetIt();
+setInterval(tweetIt, 180000);
 
-function tweet(text){
-    T.post('statuses/update', { status: text }, function(error, tweet, response) {
+function tweetIt(){
+    
+    const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(n)} time.`}
+
+    T.post('statuses/update', text , function(error, tweet, response) {
         if(error){
             console.log(error)
         } else {
-            console.log(tweet);
+            console.log(text);
         }
     })
+    increaseCount();
 }
 
-setInterval(function () {tweet(`Dormammu, I've come to bargain`); }, 7200000)
+function increaseCount(){
+    n++;
+}

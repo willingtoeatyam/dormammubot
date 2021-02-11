@@ -4,13 +4,13 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "heroku": "^7.2.0",
-    "nodemon": "^2.0.7",
+    "number-to-words": "^1.2.4",
     "twit": "^2.2.11"
   }
 }

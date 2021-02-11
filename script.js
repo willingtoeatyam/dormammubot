@@ -5,7 +5,7 @@ const config = require('./config')
 const T = new twit(config)
 let n = 1;
 tweetIt();
-setInterval(tweetIt, 180000);
+setInterval(tweetIt, 1800000);
 
 function tweetIt(){
     

@@ -41,7 +41,7 @@ function tweetIt(){
     db.select('item').from('counter').then(data => {
         console.log('CDQ yeah yeah', data[0]);
    });
-    let n = data;
+    let n = 1;
     const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(n)} time.`}
 
     T.post('statuses/update', text , function(error, tweet, response) {

@@ -17,31 +17,20 @@ const db = knex({
     }
 });
 
-// let n = 1;
+let n = 1;
 tweetIt();
 setInterval(tweetIt, 1800000);
-
-// const handleProfileGet = (req, res, db) =>{
-//     const { id } = req.params;
-//     db.select('*').from('counter').where({id})
-//     .then(user => {
-//         if(user.length){
-//             res.json(user[0])
-//         } else {
-//             res.status(400).json('Not found')
-//         }
-//     })
-//     .catch(err => res.status(400).json('error getting user'))
-// }
 
 app.get('', (req, res) => {})
 app.post('', (req, res) => {})
 
 function tweetIt(){
     db.select('item').from('counter').then(data => {
-        console.log('CDQ yeah yeah', data[0]);
+        console.log('CDQ yeah yeah', data);
+        console.log(data[0]);
+        console.log('nkc');
    });
-    let n = 1;
+  
     const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(n)} time.`}
 
     T.post('statuses/update', text , function(error, tweet, response) {

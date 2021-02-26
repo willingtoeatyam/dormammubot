@@ -18,19 +18,9 @@ const db = knex({
 });
 
 let q = 0;
-// let n = db.select('item').from('counter').then(data => {
-//     if(true){
-//         console.log(data[0].item[0]);
-//         q = data[0].item[0];
-//         console.log('callNo', q);
-//     }
-// });
-
-
-
 
 tweetIt();
-setInterval(tweetIt, 36000); //1800000
+setInterval(tweetIt, 000); //1800000
 
 function callNo(){
     db.select('item').from('counter').then(data => {
@@ -40,6 +30,7 @@ function callNo(){
             console.log('callNo', q);
         }
    });
+}
 
 function tweetIt(){
     callNo();
@@ -61,6 +52,6 @@ function increaseCount(){
         if(true){
             console.log('tnx');
         }
-    })
+    });
     console.log('increaseCount', q);
 }

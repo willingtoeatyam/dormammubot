@@ -24,7 +24,7 @@ tweetIt();
 setInterval(tweetIt, 36000); //1800000
 
 function tweetIt(){
-    increaseCount();
+
     db.select('item').from('counter').then(data => {
         if(true){
             q = data[0].item[0];
@@ -41,6 +41,7 @@ function tweetIt(){
         } else {
             console.log(text);
             console.log('value tweeted', q);
+            increaseCount();
         }
     })
 }

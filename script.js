@@ -34,8 +34,8 @@ function callNo(){
 
 function tweetIt(){
     callNo();
-
-   const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
+    l = callNo.q;
+   const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(l)} time.`}
     T.post('statuses/update', text , function(error, tweet, response) {
         if(error){
             console.log(error)

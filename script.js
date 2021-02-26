@@ -17,7 +17,7 @@ const db = knex({
     }
 });
 
-var q;
+let q = 5;
 let n = 1;
 callNo();
 tweetIt();
@@ -28,19 +28,21 @@ app.post('', (req, res) => {})
 
 function callNo(){
     db.select('item').from('counter').then(data => {
-        console.log(data[0].item[0]);
-        q = data[0].item[0];
+        if(true){
+            console.log(data[0].item[0]);
+            q = data[0].item[0];
+        }
    });
 }
 
 function tweetIt(){
    const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(n)} time.`}
-   console.log('please', q);
     T.post('statuses/update', text , function(error, tweet, response) {
         if(error){
             console.log(error)
         } else {
             console.log(text);
+            console.log('please', q);
         }
     })
     increaseCount();

@@ -17,7 +17,7 @@ const db = knex({
     }
 });
 
-let q;
+let q = 0;
 let n = 1;
 
 tweetIt();

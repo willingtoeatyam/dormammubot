@@ -18,6 +18,7 @@ const db = knex({
 });
 
 let n = 1;
+let p;
 tweetIt();
 setInterval(tweetIt, 1800000);
 

@@ -42,15 +42,15 @@ function tweetIt(){
         } else {
             console.log(text);
             console.log('tweetIt', q);
+            increaseCount();
         }
     })
-    increaseCount();
 }
 
 function increaseCount(){
     db('counter').where('id', '=', 1).increment('item', 1).then(data => {
         if(true){
-            console.log('tnx');
+            console.log('count increased to', q);
         }
     });
     console.log('increaseCount', q);

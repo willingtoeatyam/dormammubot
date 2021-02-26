@@ -17,7 +17,7 @@ const db = knex({
     }
 });
 
-let q = 1;
+let q;
 let n = 1;
 callNo();
 tweetIt();
@@ -47,6 +47,10 @@ function tweetIt(){
 }
 
 function increaseCount(){
-    db('counter').update('item', 'item + 1');
+    db('counter').where('id', '=', 1).increment('item', 1).then(data => {
+        if(true){
+            console.log('tnx');
+        }
+    })
     console.log('increaseCount', q);
 }

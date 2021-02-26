@@ -20,7 +20,7 @@ const db = knex({
 let q = 0;
 
 tweetIt();
-setInterval(tweetIt, 000); //1800000
+setInterval(tweetIt, 36000); //1800000
 
 function callNo(){
     db.select('item').from('counter').then(data => {

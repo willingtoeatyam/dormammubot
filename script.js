@@ -18,30 +18,30 @@ const db = knex({
 });
 
 let q = 0;
+let l = 0;
 
 tweetIt();
 setInterval(tweetIt, 36000); //1800000
 
-function callNo(){
+function tweetIt(){
+
     db.select('item').from('counter').then(data => {
         if(true){
             console.log(data[0].item[0]);
             q = data[0].item[0];
-            console.log('callNo', q);
+            console.log('received', q);
         }
    });
-}
 
-function tweetIt(){
-    callNo();
-   let l = callNo.q;
-   const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(l)} time.`}
+   console.log('after received from db', q);
+
+   const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
     T.post('statuses/update', text , function(error, tweet, response) {
         if(error){
             console.log(error)
         } else {
             console.log(text);
-            console.log('tweetIt', q);
+            console.log('value tweeted', q);
             increaseCount();
         }
     })
@@ -50,8 +50,12 @@ function tweetIt(){
 function increaseCount(){
     db('counter').where('id', '=', 1).increment('item', 1).then(data => {
         if(true){
-            console.log('count increased to', q);
+            db.select('item').from('counter').then(data => {
+                if(true){
+                    l = data[0].item[0];
+                    console.log('value after increase', l);
+                }
+           });
         }
     });
-    console.log('increaseCount', q);
 }

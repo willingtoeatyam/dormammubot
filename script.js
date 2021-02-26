@@ -19,7 +19,7 @@ const db = knex({
 
 let q;
 let n = 1;
-callNo();
+
 tweetIt();
 setInterval(tweetIt, 18000); //1800000
 
@@ -34,6 +34,8 @@ function callNo(){
 }
 
 function tweetIt(){
+    callNo();
+
    const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
     T.post('statuses/update', text , function(error, tweet, response) {
         if(error){

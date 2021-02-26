@@ -1,8 +1,10 @@
 const twit = require('twit');
 const ordinal = require('number-to-words');
+const express = require('express');
 const config = require('./config');
 const knex = require('knex');
 
+const app = express();
 const T = new twit(config)
 
 const db = knex({
@@ -31,6 +33,9 @@ setInterval(tweetIt, 1800000);
 //     })
 //     .catch(err => res.status(400).json('error getting user'))
 // }
+
+app.get('', (req, res) => {})
+app.post('', (req, res) => {})
 
 function tweetIt(){
     db.select('item').from('counter').then(data => {

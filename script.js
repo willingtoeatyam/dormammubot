@@ -44,6 +44,7 @@ function tweetIt(){
             console.log(error)
         } else {
             console.log(text);
+            console.log('que', q);
         }
     })
     increaseCount();

@@ -28,6 +28,8 @@ function tweetIt(){
     db.select('item').from('counter').then(data => {
         console.log('CDQ yeah yeah', data);
         console.log(data[0]);
+        console.log(data[0][0]);
+        console.log(data[0].item[0]);
         console.log('nkc');
    });
   

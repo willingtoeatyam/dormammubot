@@ -15,11 +15,7 @@ const db = knex({
     }
 });
 
-db.select('*').from('counter').then(data => {
-     console.log('CDQ yeah yeah', data);
-});
-
-let n = 1;
+// let n = 1;
 tweetIt();
 setInterval(tweetIt, 1800000);
 
@@ -37,7 +33,10 @@ setInterval(tweetIt, 1800000);
 // }
 
 function tweetIt(){
-    
+    db.select('item').from('counter').then(data => {
+        console.log('CDQ yeah yeah', data);
+   });
+    let n = data;
     const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(n)} time.`}
 
     T.post('statuses/update', text , function(error, tweet, response) {

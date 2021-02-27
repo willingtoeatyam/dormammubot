@@ -18,16 +18,16 @@ const db = knex({
 });
 
 let q = 1;
-let l = 0;
 
-tweetIt();
-setInterval(tweetIt, 60000); //1800000
+botWork();
+setInterval(botWork, 60000); //1800000
 
-function tweetIt(){
+function botWork(){
     db('counter').where({id: '1'}).select('item').then(data => {
         if(data[0].item == q){
             let p = data;
             console.log('knex fixed', p[0].item);
+            tweetIt();
         }
     });
 
@@ -40,27 +40,29 @@ function tweetIt(){
 
    console.log('after received from db', q);
 
-   const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
-    T.post('statuses/update', text , function(error, tweet, response) {
-        if(error){
-            console.log(error)
-        } else {
-            console.log(text);
-            console.log('value tweeted', q);
-            increaseCount();
-        }
-    })
+   function tweetIt(){
+        const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
+        T.post('statuses/update', text , function(error, tweet, response) {
+            if(error){
+                console.log(error)
+            } else {
+                console.log(text);
+                console.log('value tweeted', q);
+                increaseCount();
+            }
+        })
+    }
 }
 
 function increaseCount(){
-    db('counter').where('id', '=', 1).increment('item', 1).then(data => {
-        if(true){
-            db.select('item').from('counter').then(data => {
-                if(true){
-                    l = data[0].item;
-                    console.log('value after increase', l);
-                }
-           });
+    db.select('item').from('counter').then(data => {
+        if(data[0].item == q){
+            let l = data[0].item;
+            console.log('value before increase', l);
+            db('counter').where('id', '=', 1).increment('item', 1).then(data => {
+                let c = data[0].item;
+                console.log('value after increase', c);
+            })   
         }
     });
 }

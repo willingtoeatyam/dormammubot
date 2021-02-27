@@ -21,9 +21,15 @@ let q = 0;
 let l = 0;
 
 tweetIt();
-setInterval(tweetIt, 36000); //1800000
+setInterval(tweetIt, 60000); //1800000
 
 function tweetIt(){
+    db('counter').where({id: '1'}).select('item').then(data => {
+        if(true){
+            let p = data;
+            console.log('knex fixed', p);
+        }
+    });
 
     db.select('item').from('counter').then(data => {
         if(true){

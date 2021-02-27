@@ -28,6 +28,9 @@ function tweetIt(){
         if(true){
             let p = data;
             console.log('knex fixed', p);
+            console.log('knex fixed', [p]);
+            console.log('knex fixed', p[0]);
+            console.log('knex fixed', p[0].item);
         }
     });
 

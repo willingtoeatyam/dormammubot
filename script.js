@@ -1,10 +1,8 @@
 const twit = require('twit');
 const ordinal = require('number-to-words');
-const express = require('express');
 const config = require('./config');
 const knex = require('knex');
 
-const app = express();
 const T = new twit(config)
 
 const db = knex({
@@ -17,35 +15,28 @@ const db = knex({
     }
 });
 
-let q = 1;
+let count = 1;
 
-botWork();
-setInterval(botWork, 60000); //1800000
+botActivity();
+setInterval(botActivity, 300000); //1800000
 
-function botWork(){
+function botActivity(){
     db('counter').where({id: '1'}).select('item').then(data => {
         if(true){
-            q = data[0].item;
-            console.log('received', q);
+            count = data[0].item;
+            console.log('received', count);
             tweetIt();
         }
     });
 
-//     db.select('item').from('counter').then(data => {
-//         if(true){
-//             q = data[0].item;
-//             console.log('received', q);
-//         }
-//    });
-
    function tweetIt(){
-        const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(q)} time.`}
+        const text = {status: `Dormammu, I've come to bargain. This is the ${ordinal.toWordsOrdinal(count)} time.`}
         T.post('statuses/update', text , function(error, tweet, response) {
             if(error){
                 console.log(error)
             } else {
                 console.log(text);
-                console.log('value tweeted', q);
+                console.log('value tweeted', count);
                 db('counter').where('id', '=', 1).increment('item', 1).then(data => {
                     console.log('succesfully increased by 1');
                 })   

@@ -18,13 +18,13 @@ const db = knex({
 let count = 1;
 
 botActivity();
-setInterval(botActivity, 300000); //1800000
+setInterval(botActivity, 1800000); //30 minutes
 
 function botActivity(){
     db('counter').where({id: '1'}).select('item').then(data => {
         if(true){
             count = data[0].item;
-            console.log('received', count);
+            console.log(count, 'read from database');
             tweetIt();
         }
     });

@@ -24,7 +24,7 @@ setInterval(botWork, 60000); //1800000
 
 function botWork(){
     db('counter').where({id: '1'}).select('item').then(data => {
-        if(data[0].item == q){
+        if(true){
             q = data[0].item;
             console.log('received', q);
             tweetIt();

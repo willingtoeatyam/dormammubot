@@ -17,7 +17,7 @@ const db = knex({
     }
 });
 
-let q = 0;
+let q = 1;
 let l = 0;
 
 tweetIt();
@@ -25,18 +25,15 @@ setInterval(tweetIt, 60000); //1800000
 
 function tweetIt(){
     db('counter').where({id: '1'}).select('item').then(data => {
-        if(true){
+        if(data[0].item == q){
             let p = data;
-            console.log('knex fixed', p);
-            console.log('knex fixed', [p]);
-            console.log('knex fixed', p[0]);
             console.log('knex fixed', p[0].item);
         }
     });
 
     db.select('item').from('counter').then(data => {
         if(true){
-            q = data[0].item[0];
+            q = data[0].item;
             console.log('received', q);
         }
    });
@@ -60,7 +57,7 @@ function increaseCount(){
         if(true){
             db.select('item').from('counter').then(data => {
                 if(true){
-                    l = data[0].item[0];
+                    l = data[0].item;
                     console.log('value after increase', l);
                 }
            });

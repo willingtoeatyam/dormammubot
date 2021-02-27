@@ -48,7 +48,10 @@ function botWork(){
             } else {
                 console.log(text);
                 console.log('value tweeted', q);
-                increaseCount();
+                db('counter').where('id', '=', 1).increment('item', 1).then(data => {
+                    let c = data[0].item;
+                    console.log('value after increase', c);
+                })   
             }
         })
     }
@@ -59,10 +62,6 @@ function increaseCount(){
         if(data[0].item == q){
             let l = data[0].item;
             console.log('value before increase', l);
-            db('counter').where('id', '=', 1).increment('item', 1).then(data => {
-                let c = data[0].item;
-                console.log('value after increase', c);
-            })   
         }
     });
 }

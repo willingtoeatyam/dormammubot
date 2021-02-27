@@ -26,7 +26,7 @@ function botWork(){
     db('counter').where({id: '1'}).select('item').then(data => {
         if(data[0].item == q){
             q = data[0].item;
-            console.log('knex fixed', q);
+            console.log('received', q);
             tweetIt();
         }
     });

@@ -49,7 +49,7 @@ function botWork(){
                 console.log(text);
                 console.log('value tweeted', q);
                 db('counter').where('id', '=', 1).increment('item', 1).then(data => {
-                    let c = data[0].item;
+                    let c = data;
                     console.log('value after increase', c);
                 })   
             }
